@@ -1,0 +1,53 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.ksh.lenovo.mapper.GoodsMapper">
+
+    <select id="selectConut" resultType="int">
+        SELECT count(type)
+        FROM suning_result;
+    </select>
+
+    <select id="selectUnque" resultType="int">
+        SELECT COUNT(DISTINCT type)
+        FROM suning_result;
+    </select>
+
+    <select id="selectCountByScreen" resultType="com.ksh.lenovo.pojo.CpuTypeCount">
+        SELECT count(screen_size) as value,screen_size as name
+        FROM suning_result
+        group by screen_size
+        order by value desc limit 10;
+    </select>
+
+    <select id="selectCountByGraphicMemory" resultType="map">
+        SELECT count(graphics_card_capacity) as value,graphics_card_capacity as name
+        FROM suning_result
+        group by graphics_card_capacity
+        order by value desc limit 10;
+    </select>
+
+    <!--词云-->
+    <select id="selectWordCloud" resultType="map">
+        SELECT count(type) as value,type as name
+        FROM suning_result
+        group by type
+        order by value desc limit 20;
+    </select>
+
+    <select id="selectCountByMemorySize" resultType="map">
+        SELECT count(max_memory_capacity) as value,max_memory_capacity as name
+        FROM suning_result
+        group by max_memory_capacity
+        order by value desc limit 10;
+    </select>
+
+
+    <!--g7-->
+    <select id="selectG7" resultType="com.ksh.lenovo.pojo.CpuTypeCount">
+        SELECT count(type) as value,type as name
+        FROM suning_result
+        group by type limit 40;
+    </select>
+
+
+</mapper>
