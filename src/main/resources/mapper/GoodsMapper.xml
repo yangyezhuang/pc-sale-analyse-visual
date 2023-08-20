@@ -1,18 +1,16 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="com.ksh.lenovo.mapper.GoodsMapper">
+<mapper namespace="com.yyz.sale.dao.GoodDao">
 
-    <select id="selectConut" resultType="int">
-        SELECT count(type)
-        FROM suning_result;
+    <select id="getPcTotal" resultType="int">
+        SELECT count(type) FROM suning_result;
     </select>
 
-    <select id="selectUnque" resultType="int">
-        SELECT COUNT(DISTINCT type)
-        FROM suning_result;
+    <select id="getBrandTotal" resultType="int">
+        SELECT COUNT(DISTINCT type) FROM suning_result;
     </select>
 
-    <select id="selectCountByScreen" resultType="com.ksh.lenovo.pojo.CpuTypeCount">
+    <select id="selectCountByScreen" resultType="com.yyz.sale.pojo.CpuTypeCount">
         SELECT count(screen_size) as value,screen_size as name
         FROM suning_result
         group by screen_size
@@ -41,9 +39,8 @@
         order by value desc limit 10;
     </select>
 
-
     <!--g7-->
-    <select id="selectG7" resultType="com.ksh.lenovo.pojo.CpuTypeCount">
+    <select id="selectG7" resultType="com.yyz.sale.pojo.CpuTypeCount">
         SELECT count(type) as value,type as name
         FROM suning_result
         group by type limit 40;
